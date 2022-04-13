@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from 'components/Header/Header.component';
+import Header from 'components/Header/Header.component';
 
 export class BaseLayout extends React.Component {
     render() {

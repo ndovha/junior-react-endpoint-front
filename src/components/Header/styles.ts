@@ -29,6 +29,19 @@ export const Links = styled.li`
 export const UrlLink = styled(Link)`
 	text-decoration: none;
 	color: ${colors.textColor};
+	cursor: pointer;
+	position: relative;
+	text-align: center;
+	&:after {
+		position: absolute;
+		content: '';
+		height: 2px;
+		width: 100%;
+		/* background-color: ${colors.desingColor}; */
+		background-color: green;
+		left: 0;
+		bottom: -30px;
+	}
 `;
 
 export const WrapperCart = styled.div`

@@ -1,26 +1,40 @@
 import React from 'react';
 import Logo from '../../assets/Images/logo.png';
 import Cart from '../../assets/Images/cart.png';
+import { graphql, ChildProps } from '@apollo/react-hoc';
 import { WrapperHeader, HeaderLinks, Links, UrlLink, WrapperCart } from './styles';
+import { IData } from 'types';
+import GET_CURRENCY from 'queries/Currency';
 
-export class Header extends React.Component {
+const withCurrency = graphql<{}, IData>(GET_CURRENCY);
+
+class Header extends React.Component<ChildProps<{}, IData>, {}> {
+
     render() {
+        if (!this.props.data) {
+            return;
+        }
+        const { loading, currencies, error } = this.props.data;
+
+        if (loading) return <div>loading </div>;
+        if (error) return <div>{error} </div>;
+
         return (
             <WrapperHeader>
                 <HeaderLinks>
                     <ul>
                         <Links>
-                            <UrlLink to=''>Women</UrlLink>
+                            <UrlLink to=''>All</UrlLink>
                         </Links>
                     </ul>
                     <ul>
                         <Links>
-                            <UrlLink to=''>Men</UrlLink>
+                            <UrlLink to=''>Clothes</UrlLink>
                         </Links>
                     </ul>
                     <ul>
                         <Links>
-                            <UrlLink to=''>Kids</UrlLink>
+                            <UrlLink to=''>Tech</UrlLink>
                         </Links>
                     </ul>
                 </HeaderLinks>
@@ -31,13 +45,15 @@ export class Header extends React.Component {
                     <div>
                         <select>
                             <option selected disabled hidden>$</option>
-                            <option>$ USD</option>
-                            <option>€ EUR</option>
-                            <option>¥ JPY</option>
+                            {
+                                currencies && currencies.map((currency, i) => {
+                                    return <option key={i}>{currency.symbol} {currency.label}</option>
+                                })
+                            }
                         </select>
                     </div>
                     <div>
-                        <img src={Cart} />
+                        <img src={Cart} alt='cart' />
                     </div>
                 </WrapperCart>
             </WrapperHeader>
@@ -45,3 +61,5 @@ export class Header extends React.Component {
     }
 
 }
+
+export default withCurrency(Header);
