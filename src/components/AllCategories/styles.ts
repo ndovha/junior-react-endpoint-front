@@ -14,14 +14,32 @@ export const WrapperCards = styled.div`
 	align-items: center;
 `;
 
+export const BtnCart = styled.button`
+	position: absolute;
+	opacity: 0;
+	z-index: 2;
+	width: 52px;
+	height: 52px;
+	background-color: ${colors.desingColor};
+	border-radius: 50%;
+	top: 72%;
+	right: 31px;
+	cursor: pointer;
+	align-items: center;
+	box-shadow: 0px 4px 11px ${colors.shadowBtnColor};
+`;
+
 export const Card = styled.div`
+	position: relative;
 	margin-top: 103px;
 	margin-right: 35px;
 	width: 370px;
 	height: 430px;
 	padding: 16px;
-	&:hover {
+	&:hover,
+	&:hover ${BtnCart} {
 		box-shadow: 0px 4px 35px ${colors.shadowColor};
+		opacity: 1;
 	}
 `;
 
@@ -29,6 +47,7 @@ export const Image = styled.img`
 	width: 350px;
 	height: 330px;
 	object-fit: contain;
+	z-index: 1;
 `;
 
 export const Title = styled.p`

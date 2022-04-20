@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../../assets/Images/logo.png';
-import Cart from '../../assets/Images/cart.png';
+import EmptyCart from '../../assets/Images/emptyCart.png';
 import { graphql, ChildProps } from '@apollo/react-hoc';
 import { WrapperHeader, HeaderLinks, Links, UrlLink, WrapperCart } from './styles';
 import { IData } from 'types';
@@ -53,7 +53,7 @@ class Header extends React.Component<ChildProps<{}, IData>, {}> {
                         </select>
                     </div>
                     <div>
-                        <img src={Cart} alt='cart' />
+                        <img src={EmptyCart} alt='cart' />
                     </div>
                 </WrapperCart>
             </WrapperHeader>
